@@ -24,13 +24,13 @@ public class Produto {
 	@Column(name = "descricao", length = 100, nullable = true)
 	private String descricao;
 
-	@Column(name = "qtd__estoque", length = 60, nullable = false)
+	@Column(name = "qtd_estoque", nullable = false)
 	private int quantidadeEstoque;
 
-	@Column(name = "data_cadastro", length = 14, nullable = false)
+	@Column(name = "data_cadastro", nullable = true)
 	private Date dataCadastro;
 
-	@Column(name = "valor_unitario", length = 11, nullable = true)
+	@Column(name = "valor_unitario", nullable = false)
 	private Double valorUnitario;
 
 	// imagem?? @Column(name="imagem",nullable=true)
@@ -40,6 +40,21 @@ public class Produto {
 
 	public Produto() {
 	}
+	
+	
+
+	public Produto(String nome, String descricao, int quantidadeEstoque, Date dataCadastro, Double valorUnitario,
+			Long idCategoria) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.quantidadeEstoque = quantidadeEstoque;
+		this.dataCadastro = dataCadastro;
+		this.valorUnitario = valorUnitario;
+		this.idCategoria = idCategoria;
+	}
+
+
 
 	public Long getId() {
 		return id;
