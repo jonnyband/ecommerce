@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.grupo2.ecommerce.exception.ResourceBadRequestException;
+import com.grupo2.ecommerce.exception.ResourceNotFoundException;
 import com.grupo2.ecommerce.model.Cliente;
 import com.grupo2.ecommerce.repository.ClienteRepository;
 
@@ -24,9 +26,9 @@ public class ClienteService {
 		
 		Optional<Cliente> optCliente = repositorio.findById(id);
 		
-//		if(optCliente.isEmpty()) {
-//			throw new ResourceNotFoundException("Não foi possível encontrar o cliente com id " + id);
-//		}
+		if(optCliente.isEmpty()) {
+			throw new ResourceNotFoundException("Não foi possível encontrar o cliente com id " + id);
+		}
 		return optCliente;
 	}
 	
@@ -52,19 +54,18 @@ public class ClienteService {
 	
 	private void validarModelo(Cliente cliente) {
 		
-//		//TODO Criar classe para tratar as exceptions
-//		//TODO Falta fazer a verificação se o email ou CPF já existe no banco de dados.	
-//		if(cliente.getEmail() == null) {
-//			throw new ResourceBadRequestException("O email não pode ser nulo.");
-//		}
-//		if(cliente.getNomeUsuario() == null) {
-//			throw new ResourceBadRequestException("O nome de usuário não pode ser nulo.");
-//		}
-//		if(cliente.getNomeCompleto() == null) {
-//			throw new ResourceBadRequestException("O nome de completo não pode ser nulo.");
-//		}
-//		if(cliente.getCpf() == null) {
-//			throw new ResourceBadRequestException("O CPF não pode ser nulo.");
-//		}
+		//TODO Falta fazer a verificação se o email ou CPF já existe no banco de dados.	
+		if(cliente.getEmail() == null) {
+			throw new ResourceBadRequestException("O email não pode ser nulo.");
+		}
+		if(cliente.getNomeUsuario() == null) {
+			throw new ResourceBadRequestException("O nome de usuário não pode ser nulo.");
+		}
+		if(cliente.getNomeCompleto() == null) {
+			throw new ResourceBadRequestException("O nome de completo não pode ser nulo.");
+		}
+		if(cliente.getCpf() == null) {
+			throw new ResourceBadRequestException("O CPF não pode ser nulo.");
+		}
 	}
 }
