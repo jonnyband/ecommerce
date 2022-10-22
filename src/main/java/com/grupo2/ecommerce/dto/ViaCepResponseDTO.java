@@ -2,7 +2,7 @@ package com.grupo2.ecommerce.dto;
 
 public class ViaCepResponseDTO {
 	private String cep;
-	private String logadouro;
+	private String logradouro;
 	private String complemento;
 	private String bairro;
 	private String localidade;
@@ -19,11 +19,11 @@ public class ViaCepResponseDTO {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	public String getLogadouro() {
-		return logadouro;
+	public String getLogradouro() {
+		return logradouro;
 	}
-	public void setLogadouro(String logadouro) {
-		this.logadouro = logadouro;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 	public String getComplemento() {
 		return complemento;
