@@ -1,10 +1,14 @@
 package com.grupo2.ecommerce.controller;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.mail.Multipart;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.grupo2.ecommerce.model.Produto;
 import com.grupo2.ecommerce.service.ProdutoService;
 
@@ -29,10 +37,9 @@ public class ProdutoController {
 		return service.obterTodos();
 	}
 
-	@PostMapping
-	public Produto add(@RequestBody Produto produto) {
-
-		return service.cadastrar(produto);
+	@PostMapping(consumes = {"multipart/form-data "}, produces = { "application/json" })
+	public Produto add(@RequestPart("produto") Produto produto , @RequestPart("imagem") MultipartFile imagem) throws IOException {
+		return service.cadastrar(produto,imagem);
 	}
 
 	@GetMapping("/{id}")
