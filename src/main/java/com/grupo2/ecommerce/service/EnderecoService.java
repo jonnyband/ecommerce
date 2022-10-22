@@ -5,12 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import com.grupo2.ecommerce.exception.ResourceBadRequestException;
+import com.grupo2.ecommerce.dto.ViaCepResponseDTO;
 import com.grupo2.ecommerce.exception.ResourceNotFoundException;
 import com.grupo2.ecommerce.model.Endereco;
 import com.grupo2.ecommerce.repository.EnderecoRepository;
+import com.grupo2.ecommerce.utils.ViaCepUtil;
 
 @Service
 public class EnderecoService {
@@ -33,19 +33,29 @@ public class EnderecoService {
 	}
 	
 	public Endereco cadastrar (Endereco endereco) {
-		// validarModelo(endereco);
-		String url = "http://viacep.com.br/ws/"+endereco.getCep()+"/json/";
-		RestTemplate restTemplate = new RestTemplate();
-		Object result = restTemplate.getForObject(url, Object.class);
-		endereco.setId(null);
+		ViaCepResponseDTO objetoDTO;
+		objetoDTO = ViaCepUtil.getCepResponse(endereco);
+		
+		//Setando as informações puxadas pela API VIA CEP
+		endereco.setBairro(objetoDTO.getBairro());
+		endereco.setCidade(objetoDTO.getLocalidade());
+		endereco.setRua(objetoDTO.getLogradouro());
+		endereco.setUf(objetoDTO.getUf());
 		return repositorio.save(endereco);
 	}
 	
 	public Endereco atualizar (Long id, Endereco endereco) {
 		obterPorId(id); // Verificando se existe endereço com o ID informado
-		validarModelo(endereco);
-		
 		endereco.setId(id);
+		
+		ViaCepResponseDTO objetoDTO;
+		objetoDTO = ViaCepUtil.getCepResponse(endereco);
+		
+		//Setando as informações puxadas pela API VIA CEP
+		endereco.setBairro(objetoDTO.getBairro());
+		endereco.setCidade(objetoDTO.getLocalidade());
+		endereco.setRua(objetoDTO.getLogradouro());
+		endereco.setUf(objetoDTO.getUf());
 		return repositorio.save(endereco);
 	}
 	
@@ -53,12 +63,5 @@ public class EnderecoService {
 		obterPorId(id);
 		repositorio.deleteById(id);
 	}
-	
-	private void validarModelo(Endereco endereco) {
-		
-//		//TODO Falta fazer a verificação se o id do endereço já existe no banco de dados.	
-		if(endereco.getCep().length() != 9) {
-			throw new ResourceBadRequestException("O CEP deve conter 9 caracteres.");
-		}
-	}
+
 }
