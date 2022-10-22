@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.grupo2.ecommerce.exception.ResourceBadRequestException;
 import com.grupo2.ecommerce.exception.ResourceNotFoundException;
@@ -32,8 +33,10 @@ public class EnderecoService {
 	}
 	
 	public Endereco cadastrar (Endereco endereco) {
-		validarModelo(endereco);
-		
+		// validarModelo(endereco);
+		String url = "http://viacep.com.br/ws/"+endereco.getCep()+"/json/";
+		RestTemplate restTemplate = new RestTemplate();
+		Object result = restTemplate.getForObject(url, Object.class);
 		endereco.setId(null);
 		return repositorio.save(endereco);
 	}

@@ -1,10 +1,12 @@
 package com.grupo2.ecommerce.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.grupo2.ecommerce.exception.ResourceNotFoundException;
 import com.grupo2.ecommerce.model.Produto;
@@ -31,10 +33,11 @@ public class ProdutoService {
 		return optProduto;
 	}
 	
-	public Produto cadastrar (Produto produto) {
+	public Produto cadastrar (Produto produto, MultipartFile imagem) throws IOException {
 		validarModelo(produto);
 		
 		produto.setId(null);
+		produto.setImagem(imagem.getBytes());
 		return repositorio.save(produto);
 	}
 	

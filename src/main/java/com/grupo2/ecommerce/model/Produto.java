@@ -33,7 +33,8 @@ public class Produto {
 	@Column(name = "valor_unitario", nullable = false)
 	private Double valorUnitario;
 
-	// imagem?? @Column(name="imagem",nullable=true)
+	@Column(name = "imagem", nullable = true)
+	private byte[] imagem;
 
 	@Column(name = "id_categoria", nullable = true)
 	private Long idCategoria;
@@ -110,6 +111,18 @@ public class Produto {
 
 	public void setIdCategoria(Long idCategoria) {
 		this.idCategoria = idCategoria;
+	}
+
+
+
+	public byte[] getImagem() {
+		return imagem;
+	}
+
+
+
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
 	}
 }	
 	
