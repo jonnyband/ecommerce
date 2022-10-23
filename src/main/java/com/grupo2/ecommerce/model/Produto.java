@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,8 +38,12 @@ public class Produto {
 	@Column(name = "imagem", nullable = true)
 	private byte[] imagem;
 
-	@Column(name = "id_categoria", nullable = true)
-	private Long idCategoria;
+	@ManyToOne
+	@JoinColumn(name = "id_categoria", nullable = true)
+	private Categoria categoria;
+
+
+
 
 	public Produto() {
 	}
@@ -45,14 +51,14 @@ public class Produto {
 	
 
 	public Produto(String nome, String descricao, int quantidadeEstoque, Date dataCadastro, Double valorUnitario,
-			Long idCategoria) {
+			Categoria categoria) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
 		this.quantidadeEstoque = quantidadeEstoque;
 		this.dataCadastro = dataCadastro;
 		this.valorUnitario = valorUnitario;
-		this.idCategoria = idCategoria;
+		this.categoria = categoria;
 	}
 
 
@@ -105,14 +111,16 @@ public class Produto {
 		this.valorUnitario = valorUnitario;
 	}
 
-	public Long getIdCategoria() {
-		return idCategoria;
+
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setIdCategoria(Long idCategoria) {
-		this.idCategoria = idCategoria;
-	}
 
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
 
 	public byte[] getImagem() {

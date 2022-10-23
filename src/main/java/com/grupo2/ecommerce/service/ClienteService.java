@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.grupo2.ecommerce.exception.ResourceBadRequestException;
 import com.grupo2.ecommerce.exception.ResourceNotFoundException;
+import com.grupo2.ecommerce.exception.ResourceUniqueValueException;
 import com.grupo2.ecommerce.model.Cliente;
 import com.grupo2.ecommerce.repository.ClienteRepository;
 
@@ -17,6 +18,7 @@ public class ClienteService {
 	
 	@Autowired
 	private ClienteRepository repositorio;
+
 	
 	public List<Cliente> obterTodos(){
 		return repositorio.findAll();
@@ -34,9 +36,8 @@ public class ClienteService {
 	
 	public Cliente cadastrar (Cliente cliente) {
 		validarModelo(cliente);
-		
-		cliente.setId(null);
 		return repositorio.save(cliente);
+			
 	}
 	
 	public Cliente atualizar (Long id, Cliente cliente) {
@@ -54,18 +55,27 @@ public class ClienteService {
 	
 	private void validarModelo(Cliente cliente) {
 		
-		//TODO Falta fazer a verificação se o email ou CPF já existe no banco de dados.	
+
 		if(cliente.getEmail() == null) {
 			throw new ResourceBadRequestException("O email não pode ser nulo.");
 		}
-		if(cliente.getNomeUsuario() == null) {
+		else if(cliente.getNomeUsuario() == null) {
 			throw new ResourceBadRequestException("O nome de usuário não pode ser nulo.");
 		}
-		if(cliente.getNomeCompleto() == null) {
+		else if(cliente.getNomeCompleto() == null) {
 			throw new ResourceBadRequestException("O nome de completo não pode ser nulo.");
 		}
-		if(cliente.getCpf() == null) {
+		else if(cliente.getCpf() == null) {
 			throw new ResourceBadRequestException("O CPF não pode ser nulo.");
 		}
+	
+		else if(repositorio.existsByCpf(cliente.getCpf())){
+		 throw new ResourceUniqueValueException("CPF " + cliente.getCpf() + " já cadastrado.");}
+		else if(repositorio.existsByEmail(cliente.getEmail())){
+			throw new ResourceUniqueValueException("Email " + cliente.getEmail() + " já cadastrado.");
+		}
 	}
+		
+	
+	
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.grupo2.ecommerce.exception.ResourceNotFoundException;
+import com.grupo2.ecommerce.exception.ResourceUniqueValueException;
 import com.grupo2.ecommerce.model.Produto;
 import com.grupo2.ecommerce.repository.ProdutoRepository;
 
@@ -56,6 +57,26 @@ public class ProdutoService {
 	
 	private void validarModelo(Produto produto) {
 		
+		if(produto.getDataCadastro() == null){
+
+		}
+		else if(produto.getDescricao() == null){
+
+		}
+		else if(produto.getQuantidadeEstoque() == 0){
+
+		}
+		else if(produto.getDataCadastro() == null){
+
+		}
+		else if(produto.getValorUnitario() == null){
+
+		}
+	//	else if (produto.getIdCategoria() == 
+
+		else if(repositorio.existsByDescricao(produto.getDescricao())){
+			throw new ResourceUniqueValueException("Descrição " + produto.getDescricao() + " já existe.");
+		}
 	}
 
 }

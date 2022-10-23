@@ -1,22 +1,18 @@
 package com.grupo2.ecommerce.model;
 
-import java.util.List;
-
 public class MensagemEmail {
 
 	private String assunto;
 	
 	private String mensagem;
 	
-	private String remetente;
+	private String destinatario;
 	
-	private List<String> destinatarios;
-	
-	public MensagemEmail(String assunto, String mensagem, String remetente, List<String> destinatarios) {
+
+	public MensagemEmail(String assunto, String mensagem, String destinatario) {
 		this.assunto = assunto;
 		this.mensagem = mensagem;
-		this.remetente = remetente;
-		this.destinatarios = destinatarios;
+		this.destinatario = destinatario;
 	}
 
 	public String getAssunto() {
@@ -35,21 +31,12 @@ public class MensagemEmail {
 		this.mensagem = mensagem;
 	}
 
-	public String getRemetente() {
-		return remetente;
+
+	public String getDestinatario() {
+		return destinatario;
 	}
 
-	public void setRemetente(String remetente) {
-		this.remetente = remetente;
+	public void setDestinatario(String destinatario) {
+		this.destinatario = destinatario;
 	}
-
-	public List<String> getDestinatarios() {
-		return destinatarios;
-	}
-
-	public void setDestinatarios(List<String> destinatarios) {
-		this.destinatarios = destinatarios;
-	}
-	
-	
 }

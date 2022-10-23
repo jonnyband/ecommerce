@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo2.ecommerce.model.Cliente;
+import com.grupo2.ecommerce.model.MensagemEmail;
 import com.grupo2.ecommerce.service.ClienteService;
+import com.grupo2.ecommerce.service.EmailService;
 
 
 
@@ -26,6 +28,9 @@ public class ClienteController {
 	
 	@Autowired
 	ClienteService service;
+
+	@Autowired
+	private EmailService emailService;
 	
 	@GetMapping
 	public ResponseEntity<List<Cliente>> obterTodos(){
@@ -44,6 +49,11 @@ public class ClienteController {
 	@PostMapping
 	public ResponseEntity<Cliente> cadastrar(@RequestBody Cliente cliente) {
 		cliente = service.cadastrar(cliente);
+		// emailService.enviar(
+		// new MensagemEmail("Cadastro de "+ cliente.getNomeCompleto(),
+		//                   "Bem vindo ao Ecommerce grupo 2, "+cliente.getNomeUsuario()+"!",
+		// 				   cliente.getEmail()));
+
 		return new ResponseEntity<>(cliente, HttpStatus.CREATED); // 201
 	}
 	
