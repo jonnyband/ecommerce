@@ -25,7 +25,8 @@ public class Pedido {
 	@Column(name = "data_envio")
 	private Date dataEnvio;
 	
-	private boolean status;
+	@Column(nullable = false)
+	private String status;
 
 	public Long getId() {
 		return id;
@@ -59,11 +60,11 @@ public class Pedido {
 		this.dataEnvio = dataEnvio;
 	}
 
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	
