@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.grupo2.ecommerce.exception.ResourceBadRequestException;
 import com.grupo2.ecommerce.exception.ResourceNotFoundException;
 import com.grupo2.ecommerce.model.ItemPedido;
+import com.grupo2.ecommerce.model.Produto;
 import com.grupo2.ecommerce.repository.ItemPedidoRepository;
 
 @Service
@@ -16,7 +17,11 @@ public class ItemPedidoService {
 	
 	@Autowired
 	private ItemPedidoRepository repositorio;
+
+	@Autowired
+	private ProdutoService produtoService;
 	
+
 	public List<ItemPedido> obterTodos(){
 		return repositorio.findAll();
 	}
@@ -33,6 +38,9 @@ public class ItemPedidoService {
 	
 	public ItemPedido cadastrar(ItemPedido itemPedido) {
 		validarModelo(itemPedido);
+
+		itemPedido = calcularValores(itemPedido);
+
 		itemPedido.setId(null);
 		return repositorio.save(itemPedido);
 	}
@@ -48,6 +56,20 @@ public class ItemPedidoService {
 		obterPorId(id);
 		repositorio.deleteById(id);
 	}
+
+	
+private ItemPedido calcularValores(ItemPedido itemPedido) {
+
+	Optional <Produto> produto = produtoService.obterPorId(itemPedido.getProduto().getId());
+	itemPedido.setValorBruto(produto.get().getValorUnitario()*itemPedido.getQuantidade());
+	if(itemPedido.getPercentualDesconto()== null){
+		itemPedido.setPercentualDesconto(0.0);
+	}
+	itemPedido.setValorLiquido(itemPedido.getValorBruto()-(itemPedido.getValorBruto()*itemPedido.getPercentualDesconto()/100));
+	
+	return itemPedido;
+	
+}
 	
 	private void validarModelo(ItemPedido itemPedido) {
 		
@@ -57,23 +79,25 @@ public class ItemPedidoService {
 			throw new ResourceBadRequestException("A quantidade de itens deve ser maior do que 0.");
 		}
 		
-		if(itemPedido.getPrecoVenda() == null) {
-			throw new ResourceBadRequestException("O preço deve ser informado.");
-		}else if (itemPedido.getPrecoVenda() < 1) {
-			throw new ResourceBadRequestException("O preço deve ser maior do que 0.");
-		}
+		// if(itemPedido.getPrecoVenda() == null) {
+		// 	throw new ResourceBadRequestException("O preço deve ser informado.");
+		// }else if (itemPedido.getPrecoVenda() < 1) {
+		// 	throw new ResourceBadRequestException("O preço deve ser maior do que 0.");
+		// }
 		
-		if(itemPedido.getValorBruto() == null) {
-			throw new ResourceBadRequestException("O valor bruto deve ser informado.");
-		}else if (itemPedido.getValorBruto() < 1) {
-			throw new ResourceBadRequestException("O valor bruto deve ser maior do que 0.");
-		}
+		// if(itemPedido.getValorBruto() == null) {
+		// 	throw new ResourceBadRequestException("O valor bruto deve ser informado.");
+		// }else if (itemPedido.getValorBruto() < 1) {
+		// 	throw new ResourceBadRequestException("O valor bruto deve ser maior do que 0.");
+		// }
 		
-		if(itemPedido.getValorLiquido() == null) {
-			throw new ResourceBadRequestException("O valor líquido deve ser informada.");
-		}else if (itemPedido.getValorLiquido() < 1) {
-			throw new ResourceBadRequestException("O valor líquido deve ser maior do que 0.");
-		}
+		// if(itemPedido.getValorLiquido() == null) {
+		// 	throw new ResourceBadRequestException("O valor líquido deve ser informada.");
+		// }else if (itemPedido.getValorLiquido() < 1) {
+		// 	throw new ResourceBadRequestException("O valor líquido deve ser maior do que 0.");
+		// }
 		
 	}
+
+
 }

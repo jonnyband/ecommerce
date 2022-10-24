@@ -5,8 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Pedido {
@@ -27,6 +31,18 @@ public class Pedido {
 	
 	@Column(nullable = false)
 	private String status;
+
+	@OneToMany
+	@JoinColumn(name = "id_item_pedido")
+	private List<ItemPedido> listaItemPedido;
+
+	public List<ItemPedido> getListaItemPedido() {
+		return listaItemPedido;
+	}
+
+	public void setListaItemPedido(List<ItemPedido> listaItemPedido) {
+		this.listaItemPedido = listaItemPedido;
+	}
 
 	public Long getId() {
 		return id;
