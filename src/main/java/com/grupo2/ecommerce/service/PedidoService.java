@@ -16,8 +16,7 @@ import com.grupo2.ecommerce.exception.ResourceNotFoundException;
 import com.grupo2.ecommerce.model.ItemPedido;
 import com.grupo2.ecommerce.model.Pedido;
 import com.grupo2.ecommerce.repository.PedidoRepository;
-
-import ch.qos.logback.core.net.server.Client;
+import com.grupo2.ecommerce.utils.ConversorDeData;
 
 @Service
 public class PedidoService {
@@ -54,7 +53,9 @@ public class PedidoService {
 	}
 	
 	public PedidoResponseDTO cadastrar(PedidoRequestDTO pedidoDTO) {
+
 		Pedido pedido = mapper.map(pedidoDTO, Pedido.class);
+		ConversorDeData.validarData(pedido);
 		validarModelo(pedido);
 		pedido = repositorio.save(pedido);
 		pedido.setCliente(clienteService.obterPorId(pedido.getCliente().getId()).get());

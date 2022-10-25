@@ -1,0 +1,517 @@
+{
+	"info": {
+		"_postman_id": "14116771-b298-4500-a0eb-ddb52dca305e",
+		"name": "ecommerceAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "Categorias",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Celular\",\r\n    \"descricao\":\"Celular topzeira das baladas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/categorias",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "http://127.0.0.1:8080/api/clientes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jmsupernet1@gmail.com\",\r\n    \"nomeUsuario\":\"cliente1\",\r\n    \"nomeCompleto\":\"cliente1\",\r\n    \"cpf\":\"12345608910\",\r\n    \"telefone\":\"24992222222\",\r\n    \"dataNascimento\":\"0001-01-01\",\r\n    \"idEndereco\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/clientes",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8080/api/clientes Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/clientes",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enderecos",
+			"item": [
+				{
+					"name": "http://127.0.0.1:8080/api/enderecos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\":\"25615412\",\r\n    \"rua\":\"a\",\r\n    \"bairro\":\"b\",\r\n    \"cidade\":\"c\",\r\n    \"numero\":200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/enderecos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"enderecos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8080/api/enderecos Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\":\"25615412\",\r\n    \"rua\":\"a\",\r\n    \"bairro\":\"b\",\r\n    \"cidade\":\"c\",\r\n    \"numero\":200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/enderecos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"enderecos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "New Request",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6MzAwMFwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MTI5NjE2NTAsImV4cCI6MTYxMjk2NTI1MCwibmJmIjoxNjEyOTYxNjUwLCJqdGkiOiI1aHhGejJYZzJhVldkU2gwIiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.usVH-8CbawcZMqQq1GT65W1G2SQ50fylcXlHY_JIl2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=calculated when request is sent",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "produto",
+									"value": "{\n\"nome\":\"Galaxy\",\n\"descricao\":\"celular\",\n\"quantidadeEstoque\":2,\n\"dataCadastro\":\"2022-10-22\",\n\"valorUnitario\":300.0,\n\"idCategoria\":null\n\n}",
+									"contentType": "application/json",
+									"type": "default"
+								},
+								{
+									"key": "imagem",
+									"contentType": "",
+									"type": "file",
+									"src": "/C:/Users/Jonny/Downloads/Atividade Final - E-commerce.pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/produtos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6MzAwMFwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MTI5NjE2NTAsImV4cCI6MTYxMjk2NTI1MCwibmJmIjoxNjEyOTYxNjUwLCJqdGkiOiI1aHhGejJYZzJhVldkU2gwIiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.usVH-8CbawcZMqQq1GT65W1G2SQ50fylcXlHY_JIl2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=calculated when request is sent",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "produto",
+									"value": "{\n\"nome\":\"Galaxy\",\n\"descricao\":\"celular\",\n\"quantidadeEstoque\":2,\n\"dataCadastro\":\"2022-10-22\",\n\"valorUnitario\":300.0,\n\"idCategoria\":null\n\n}",
+									"contentType": "application/json",
+									"type": "default"
+								},
+								{
+									"key": "imagem",
+									"contentType": "",
+									"type": "file",
+									"src": "/C:/Users/Jonny/Downloads/Atividade Final - E-commerce.pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/produtos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy 2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6MzAwMFwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MTI5NjE2NTAsImV4cCI6MTYxMjk2NTI1MCwibmJmIjoxNjEyOTYxNjUwLCJqdGkiOiI1aHhGejJYZzJhVldkU2gwIiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.usVH-8CbawcZMqQq1GT65W1G2SQ50fylcXlHY_JIl2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=calculated when request is sent",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "produto",
+									"value": "{\n\"nome\":\"Galaxy\",\n\"descricao\":\"celular\",\n\"quantidadeEstoque\":2,\n\"dataCadastro\":\"2022-10-22\",\n\"valorUnitario\":300.0,\n\"idCategoria\":null\n\n}",
+									"contentType": "application/json",
+									"type": "default"
+								},
+								{
+									"key": "imagem",
+									"contentType": "",
+									"type": "file",
+									"src": "/C:/Users/Jonny/Downloads/Atividade Final - E-commerce.pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/produtos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataPedido\":\"2023-10-24\",\r\n    \"dataEntrega\":\"2022-11-24\",\r\n    \"dataEnvio\":\"2022-10-25\",\r\n    \"status\":\"PROCESSANDO\",\r\n    \"cliente\":{\"id\":6},\r\n    \"listaItemPedido\":\r\n        [\r\n    {\r\n    \"quantidade\":2,\r\n    \"precoVenda\":1,\r\n    \"percentualDesconto\":15.0,\r\n    \"valorBruto\":100.0,\r\n    \"valorLiquido\":0.0,\r\n    \"pedido\":{\"id\":null\r\n    },\r\n    \"produto\":{\r\n        \"id\":17\r\n        }  \r\n    },\r\n     {\r\n    \"quantidade\":5,\r\n    \"precoVenda\":10,\r\n    \"percentualDesconto\":15.0,\r\n    \"valorBruto\":100.0,\r\n    \"valorLiquido\":0.0,\r\n    \"pedido\":{\r\n        \"id\":null\r\n    },\r\n    \"produto\":{\r\n        \"id\":19\r\n        }  \r\n    }\r\n        ]\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/pedido",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataPedido\":\"2022-10-24\",\r\n    \"dataEntrega\":\"2022-11-24\",\r\n    \"dataEnvio\":\"2022-10-25\",\r\n    \"status\":\"ENTREGUE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/pedido",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedido"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ItemPedido",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantidade\":2,\r\n    \"precoVenda\":1,\r\n    \"percentualDesconto\":15.0,\r\n    \"valorBruto\":100.0,\r\n    \"valorLiquido\":50.0,\r\n    \"pedido\":{\r\n        \"id\":1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/itempedido",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"itempedido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

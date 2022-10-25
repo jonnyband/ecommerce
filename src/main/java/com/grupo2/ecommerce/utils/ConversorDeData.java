@@ -1,17 +1,12 @@
 package com.grupo2.ecommerce.utils;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.chrono.ChronoLocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
 import com.grupo2.ecommerce.exception.ResourceBadRequestException;
 import com.grupo2.ecommerce.model.Pedido;
 
-import net.bytebuddy.asm.Advice.Local;
 
 public class ConversorDeData {
 
@@ -36,7 +31,7 @@ public class ConversorDeData {
 		return formatador.format(data);
 	}
 
-	private static void validarModelo(Pedido pedido) {
+	public static void validarData(Pedido pedido) {
 
         Calendar dAtual = Calendar.getInstance();
         Calendar dPedido = Calendar.getInstance();
