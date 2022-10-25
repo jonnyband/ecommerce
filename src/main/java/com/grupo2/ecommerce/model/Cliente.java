@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -37,24 +39,27 @@ public class Cliente {
 	@Column(name="data_nasc",nullable=true)
 	private Date dataNascimento;
 	
-	@Column(name="id_endereco",nullable=true)
-	private Long idEndereco;
 	
+
+	@OneToOne
+	@JoinColumn(name="id_endereco",nullable=true )
+	private Endereco endereco;
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+
+
 	public Cliente() {
 	}
 	
-
-	public Cliente(String email, String nomeUsuario, String nomeCompleto, String cpf, String telefone,
-			Date dataNascimento, Long idEndereco) {
-		super();
-		this.email = email;
-		this.nomeUsuario = nomeUsuario;
-		this.nomeCompleto = nomeCompleto;
-		this.cpf = cpf;
-		this.telefone = telefone;
-		this.dataNascimento = dataNascimento;
-		this.idEndereco = idEndereco;
-	}
 
 	
 	//Getters e Setters
@@ -127,14 +132,5 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 
-
-	public Long getIdEndereco() {
-		return idEndereco;
-	}
-
-
-	public void setIdEndereco(Long idEndereco) {
-		this.idEndereco = idEndereco;
-	}
 
 }

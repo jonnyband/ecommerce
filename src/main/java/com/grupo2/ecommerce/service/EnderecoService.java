@@ -10,13 +10,15 @@ import com.grupo2.ecommerce.dto.ViaCepResponseDTO;
 import com.grupo2.ecommerce.exception.ResourceNotFoundException;
 import com.grupo2.ecommerce.model.Endereco;
 import com.grupo2.ecommerce.repository.EnderecoRepository;
-import com.grupo2.ecommerce.utils.ViaCepUtil;
 
 @Service
 public class EnderecoService {
 	
 	@Autowired
 	private EnderecoRepository repositorio;
+
+	@Autowired
+	private ViaCepService viaCepService;
 	
 	public List<Endereco> obterTodos(){
 		return repositorio.findAll();
@@ -34,7 +36,7 @@ public class EnderecoService {
 	
 	public Endereco cadastrar (Endereco endereco) {
 		ViaCepResponseDTO objetoDTO;
-		objetoDTO = ViaCepUtil.getCepResponse(endereco);
+		objetoDTO = viaCepService.getCepResponse(endereco);
 		
 		//Setando as informações puxadas pela API VIA CEP
 		endereco.setBairro(objetoDTO.getBairro());
@@ -49,7 +51,7 @@ public class EnderecoService {
 		endereco.setId(id);
 		
 		ViaCepResponseDTO objetoDTO;
-		objetoDTO = ViaCepUtil.getCepResponse(endereco);
+		objetoDTO = viaCepService.getCepResponse(endereco);
 		
 		//Setando as informações puxadas pela API VIA CEP
 		endereco.setBairro(objetoDTO.getBairro());

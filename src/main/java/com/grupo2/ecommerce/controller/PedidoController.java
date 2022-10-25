@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo2.ecommerce.dto.PedidoRequestDTO;
 import com.grupo2.ecommerce.dto.PedidoResponseDTO;
+import com.grupo2.ecommerce.model.MensagemEmail;
 import com.grupo2.ecommerce.model.Pedido;
+import com.grupo2.ecommerce.service.EmailService;
 import com.grupo2.ecommerce.service.PedidoService;
 
 @RestController
@@ -26,10 +28,13 @@ public class PedidoController {
 	
 	@Autowired
 	private PedidoService servico;
+
+	@Autowired
+	private EmailService emailService;
 	
 	@GetMapping
-	public ResponseEntity<List<Pedido>> obterTodos(){
-		List<Pedido> lista = servico.obterTodos();
+	public ResponseEntity<List<PedidoResponseDTO>> obterTodos(){
+		List<PedidoResponseDTO> lista = servico.obterTodos();
 		return ResponseEntity.ok(lista);
 	}
 	
@@ -42,10 +47,10 @@ public class PedidoController {
 	@PostMapping()
 	public ResponseEntity<PedidoResponseDTO> cadastrar(@RequestBody PedidoRequestDTO pedidoDTO) {
 		PedidoResponseDTO pedidoResponseDTO = servico.cadastrar(pedidoDTO);
-				// emailService.enviar(
-		// new MensagemEmail("Cadastro de "+ cliente.getNomeCompleto(),
-		//                   "Bem vindo ao Ecommerce grupo 2, "+cliente.getNomeUsuario()+"!",
-		// 				   cliente.getEmail()));
+		// 		emailService.enviar(
+		// new MensagemEmail("Pedido de "+ pedidoResponseDTO.getCliente().getNomeCompleto(),
+		//                   "Pedido, "+pedidoResponseDTO.getId()+" realizado com sucesso!",
+		// 				  pedidoResponseDTO.getCliente().getEmail()));
 		return new ResponseEntity<>(pedidoResponseDTO, HttpStatus.CREATED);
 	}
 	

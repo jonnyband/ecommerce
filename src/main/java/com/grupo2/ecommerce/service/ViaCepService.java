@@ -1,15 +1,16 @@
-package com.grupo2.ecommerce.utils;
+package com.grupo2.ecommerce.service;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.grupo2.ecommerce.dto.ViaCepResponseDTO;
 import com.grupo2.ecommerce.model.Endereco;
-
-public class ViaCepUtil {
+@Service
+public class ViaCepService {
 
 	
 	
-	public static ViaCepResponseDTO getCepResponse(Endereco endereco) {
+	public ViaCepResponseDTO getCepResponse(Endereco endereco) {
 
 		try {
 			if (validaCep(endereco) == false) {

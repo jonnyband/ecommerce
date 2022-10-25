@@ -41,8 +41,8 @@ public class ClienteService {
 	}
 	
 	public Cliente atualizar (Long id, Cliente cliente) {
-		obterPorId(id); // Verificando se existe usuário com o ID informado
-		validarModelo(cliente);
+		obterPorId(id);
+	//	validarModelo(cliente);
 		
 		cliente.setId(id);
 		return repositorio.save(cliente);

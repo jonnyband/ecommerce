@@ -5,7 +5,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
+
+import com.grupo2.ecommerce.exception.ResourceBadRequestException;
+import com.grupo2.ecommerce.model.Pedido;
 
 import net.bytebuddy.asm.Advice.Local;
 
@@ -32,9 +36,19 @@ public class ConversorDeData {
 		return formatador.format(data);
 	}
 
-	public static boolean verificarData( Date data){
-		
-		return  true;
-	
+	private static void validarModelo(Pedido pedido) {
+
+        Calendar dAtual = Calendar.getInstance();
+        Calendar dPedido = Calendar.getInstance();
+        Date dataAtual = new Date();
+        Date dataPedido = pedido.getDataPedido();
+
+        dAtual.setTime(dataAtual);
+        dPedido.setTime(dataPedido);
+
+        if(!dPedido.after(dAtual)) {
+            throw new ResourceBadRequestException("A data do pedido não pode ser inferior a data atual");
+        }
+    }
 }
-}
+

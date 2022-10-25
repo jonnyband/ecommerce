@@ -1,5 +1,6 @@
 package com.grupo2.ecommerce.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,13 @@ public class PedidoService {
 
 	private ModelMapper mapper = new ModelMapper();
 	
-	public List<Pedido> obterTodos(){
-		return repositorio.findAll();
+	public List<PedidoResponseDTO> obterTodos(){
+		List<Pedido> list = repositorio.findAll();
+		List<PedidoResponseDTO> pedidoResponseDTO = new ArrayList<>();
+		for (int i = 0; i< list.size(); i++) {
+			pedidoResponseDTO.add(mapper.map(list.get(i), PedidoResponseDTO.class));
+		}
+		return pedidoResponseDTO;
 	}
 	
 	public Optional<Pedido> obterPorId(Long id){
