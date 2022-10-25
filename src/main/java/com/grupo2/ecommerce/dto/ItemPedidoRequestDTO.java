@@ -1,6 +1,8 @@
 package com.grupo2.ecommerce.dto;
 
-public class ItemPedidoDTO {
+import com.grupo2.ecommerce.model.Produto;
+
+public class ItemPedidoRequestDTO {
 	
 	private Long id;
 	private Integer quantidade;
@@ -8,7 +10,34 @@ public class ItemPedidoDTO {
 	private Double percentualDesconto;
 	private Double valorBruto;
 	private Double valorLiquido;
+	private PedidoRequestDTO pedido;
+	private Produto produto;
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public PedidoRequestDTO getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(PedidoRequestDTO pedido) {
+		this.pedido = pedido;
+	}
+
+	private Produto idProduto;
 	
+	public Produto getIdProduto() {
+		return idProduto;
+	}
+
+	public void setIdProduto(Produto idProduto) {
+		this.idProduto = idProduto;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -2,11 +2,14 @@ package com.grupo2.ecommerce.controller;
 
 
 import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
 import javax.mail.Multipart;
+import java.awt.image.BufferedImage;
 
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -37,15 +40,23 @@ public class ProdutoController {
 		return service.obterTodos();
 	}
 
+	@GetMapping("/{id}")
+	public Optional<Produto> read(@PathVariable Long id) {
+		return service.obterPorId(id);
+	}
+
+	@GetMapping(path = "/imagem/{id}", produces = "image/png")
+	public byte[] lerImagem(@PathVariable Long id) throws IOException {
+		return service.obterImagemPorId(id);
+	}
+
+
 	@PostMapping(consumes = {"multipart/form-data "}, produces = { "application/json" })
 	public Produto add(@RequestPart("produto") Produto produto , @RequestPart("imagem") MultipartFile imagem) throws IOException {
 		return service.cadastrar(produto,imagem);
 	}
 
-	@GetMapping("/{id}")
-	public Optional<Produto> read(@PathVariable Long id) {
-		return service.obterPorId(id);
-	}
+	
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Produto> update(@PathVariable Long id, @RequestBody Produto produto) {

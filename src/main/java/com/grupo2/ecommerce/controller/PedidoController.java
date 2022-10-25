@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo2.ecommerce.dto.PedidoRequestDTO;
+import com.grupo2.ecommerce.dto.PedidoResponseDTO;
 import com.grupo2.ecommerce.model.Pedido;
 import com.grupo2.ecommerce.service.PedidoService;
 
@@ -37,10 +39,14 @@ public class PedidoController {
 		return ResponseEntity.ok(optPedido.get());
 	}
 	
-	@PostMapping
-	public ResponseEntity<Pedido> cadastrar(@RequestBody Pedido pedido) {
-		pedido = servico.cadastrar(pedido);
-		return new ResponseEntity<>(pedido, HttpStatus.CREATED);
+	@PostMapping()
+	public ResponseEntity<PedidoResponseDTO> cadastrar(@RequestBody PedidoRequestDTO pedidoDTO) {
+		PedidoResponseDTO pedidoResponseDTO = servico.cadastrar(pedidoDTO);
+				// emailService.enviar(
+		// new MensagemEmail("Cadastro de "+ cliente.getNomeCompleto(),
+		//                   "Bem vindo ao Ecommerce grupo 2, "+cliente.getNomeUsuario()+"!",
+		// 				   cliente.getEmail()));
+		return new ResponseEntity<>(pedidoResponseDTO, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{id}")

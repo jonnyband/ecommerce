@@ -1,15 +1,40 @@
 package com.grupo2.ecommerce.dto;
 
 import java.util.Date;
+import java.util.List;
 
-public class PedidoDTO {
+import com.grupo2.ecommerce.model.Cliente;
+
+public class PedidoRequestDTO {
 	
 	private Long id;
 	private Date dataPedido;
 	private Date dataEntrega;
-	private Date datEnvio;
+	private Date dataEnvio;
 	private String status;
+	private List<ItemPedidoRequestDTO> listaItemPedido;
+	public List<ItemPedidoRequestDTO> getListaItemPedido() {
+		return listaItemPedido;
+	}
+
+	public void setListaItemPedido(List<ItemPedidoRequestDTO> listaItemPedido) {
+		this.listaItemPedido = listaItemPedido;
+	}
+
+	private Cliente cliente;
 	
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	
+
 	public Long getId() {
 		return id;
 	}
@@ -34,12 +59,12 @@ public class PedidoDTO {
 		this.dataEntrega = dataEntrega;
 	}
 	
-	public Date getDatEnvio() {
-		return datEnvio;
+	public Date getDataEnvio() {
+		return dataEnvio;
 	}
 	
-	public void setDatEnvio(Date datEnvio) {
-		this.datEnvio = datEnvio;
+	public void setDataEnvio(Date datEnvio) {
+		this.dataEnvio = datEnvio;
 	}
 	
 	public String getStatus() {

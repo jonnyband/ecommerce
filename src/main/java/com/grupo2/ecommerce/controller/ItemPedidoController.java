@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo2.ecommerce.dto.ItemPedidoResponseDTO;
 import com.grupo2.ecommerce.model.ItemPedido;
 import com.grupo2.ecommerce.service.ItemPedidoService;
 
@@ -39,9 +40,9 @@ public class ItemPedidoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ItemPedido> cadastrar(@RequestBody ItemPedido itemPedido) {
-		itemPedido = servico.cadastrar(itemPedido);
-		return new ResponseEntity<>(itemPedido, HttpStatus.CREATED);
+	public ResponseEntity<ItemPedidoResponseDTO> cadastrar(@RequestBody ItemPedido itemPedido) {
+		ItemPedidoResponseDTO itemPedidoResponseDTO = servico.cadastrar(itemPedido);
+		return new ResponseEntity<>(itemPedidoResponseDTO, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{id}")

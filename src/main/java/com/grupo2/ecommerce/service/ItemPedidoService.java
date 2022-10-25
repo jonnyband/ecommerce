@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
 
+import com.grupo2.ecommerce.dto.ItemPedidoResponseDTO;
 import com.grupo2.ecommerce.exception.ResourceBadRequestException;
 import com.grupo2.ecommerce.exception.ResourceNotFoundException;
 import com.grupo2.ecommerce.model.ItemPedido;
@@ -20,6 +22,8 @@ public class ItemPedidoService {
 
 	@Autowired
 	private ProdutoService produtoService;
+
+	private ModelMapper mapper = new ModelMapper();
 	
 
 	public List<ItemPedido> obterTodos(){
@@ -36,13 +40,16 @@ public class ItemPedidoService {
 		return optItemPedido;
 	}
 	
-	public ItemPedido cadastrar(ItemPedido itemPedido) {
+	public ItemPedidoResponseDTO cadastrar(ItemPedido itemPedido) {
 		validarModelo(itemPedido);
 
 		itemPedido = calcularValores(itemPedido);
 
 		itemPedido.setId(null);
-		return repositorio.save(itemPedido);
+		repositorio.save(itemPedido);
+		ItemPedidoResponseDTO itemPedidoResponseDTO = mapper.map(itemPedido, ItemPedidoResponseDTO.class);
+		return itemPedidoResponseDTO;
+
 	}
 	
 	public ItemPedido atualizar(Long id, ItemPedido itemPedido) {
@@ -61,6 +68,7 @@ public class ItemPedidoService {
 private ItemPedido calcularValores(ItemPedido itemPedido) {
 
 	Optional <Produto> produto = produtoService.obterPorId(itemPedido.getProduto().getId());
+	itemPedido.setProduto(produto.get());
 	itemPedido.setValorBruto(produto.get().getValorUnitario()*itemPedido.getQuantidade());
 	if(itemPedido.getPercentualDesconto()== null){
 		itemPedido.setPercentualDesconto(0.0);

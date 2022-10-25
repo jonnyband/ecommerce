@@ -1,5 +1,6 @@
 package com.grupo2.ecommerce.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class ItemPedido {
@@ -32,13 +35,29 @@ public class ItemPedido {
 	@Column(name = "valor_liquido", nullable = false)
 	private Double valorLiquido;
 	
-	@ManyToOne
+	@ManyToOne( cascade = {CascadeType.ALL})
+	@JsonBackReference
 	@JoinColumn(name = "id_pedido")
 	private Pedido pedido;
 	
 	@OneToOne
 	@JoinColumn(name = "id_produto")
 	private Produto produto;
+
+	public ItemPedido(Long id, Integer quantidade, Integer precoVenda, Double percentualDesconto, Double valorBruto,
+			Double valorLiquido, Pedido pedido, Produto produto) {
+		this.id = id;
+		this.quantidade = quantidade;
+		this.precoVenda = precoVenda;
+		this.percentualDesconto = percentualDesconto;
+		this.valorBruto = valorBruto;
+		this.valorLiquido = valorLiquido;
+		this.pedido = pedido;
+		this.produto = produto;
+	}
+
+	public ItemPedido() {
+	}
 
 	public Produto getProduto() {
 		return produto;

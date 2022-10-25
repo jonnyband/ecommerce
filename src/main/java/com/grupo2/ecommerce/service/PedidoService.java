@@ -5,17 +5,32 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
 
+import com.grupo2.ecommerce.dto.ItemPedidoRequestDTO;
+import com.grupo2.ecommerce.dto.PedidoRequestDTO;
+import com.grupo2.ecommerce.dto.PedidoResponseDTO;
 import com.grupo2.ecommerce.exception.ResourceBadRequestException;
 import com.grupo2.ecommerce.exception.ResourceNotFoundException;
+import com.grupo2.ecommerce.model.ItemPedido;
 import com.grupo2.ecommerce.model.Pedido;
 import com.grupo2.ecommerce.repository.PedidoRepository;
+
+import ch.qos.logback.core.net.server.Client;
 
 @Service
 public class PedidoService {
 	
 	@Autowired
 	private PedidoRepository repositorio;
+
+	@Autowired
+	private ItemPedidoService itemPedidoService;
+
+	@Autowired
+	private ClienteService clienteService;
+
+	private ModelMapper mapper = new ModelMapper();
 	
 	public List<Pedido> obterTodos(){
 		return repositorio.findAll();
@@ -32,10 +47,20 @@ public class PedidoService {
 		return optPedido;
 	}
 	
-	public Pedido cadastrar(Pedido pedido) {
+	public PedidoResponseDTO cadastrar(PedidoRequestDTO pedidoDTO) {
+		Pedido pedido = mapper.map(pedidoDTO, Pedido.class);
 		validarModelo(pedido);
-		pedido.setId(null);
-		return repositorio.save(pedido);
+		pedido = repositorio.save(pedido);
+		pedido.setCliente(clienteService.obterPorId(pedido.getCliente().getId()).get());
+		pedido.getListaItemPedido().clear();
+		for (ItemPedidoRequestDTO itemPedidoDTO: pedidoDTO.getListaItemPedido()) {
+			ItemPedido itemPedido = mapper.map(itemPedidoDTO, ItemPedido.class);
+			itemPedido.setPedido(pedido);
+			itemPedidoService.cadastrar(itemPedido);
+			pedido.getListaItemPedido().add(itemPedido);
+		}
+		PedidoResponseDTO pedidoResponseDTO = mapper.map(pedido, PedidoResponseDTO.class);
+		return pedidoResponseDTO;
 	}
 	
 	public Pedido atualizar(Long id, Pedido pedido) {

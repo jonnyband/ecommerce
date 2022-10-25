@@ -1,10 +1,20 @@
 package com.grupo2.ecommerce.service;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Optional;
 
+import javax.imageio.ImageIO;
+
+import org.hibernate.result.Output;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,6 +42,13 @@ public class ProdutoService {
 			throw new ResourceNotFoundException("Não foi possível encontrar o produto com id " + id);
 		}
 		return optProduto;
+	}
+
+
+	public byte[] obterImagemPorId(Long id) throws IOException{
+		Optional<Produto> produto = obterPorId(id);
+		return produto.get().getImagem();
+	
 	}
 	
 	public Produto cadastrar (Produto produto, MultipartFile imagem) throws IOException {
