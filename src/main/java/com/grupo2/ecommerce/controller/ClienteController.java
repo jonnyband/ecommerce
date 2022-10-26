@@ -49,10 +49,10 @@ public class ClienteController {
 	@PostMapping
 	public ResponseEntity<Cliente> cadastrar(@RequestBody Cliente cliente) {
 		cliente = service.cadastrar(cliente);
-		// emailService.enviar(
-		// new MensagemEmail("Cadastro de "+ cliente.getNomeCompleto(),
-		//                   "Bem vindo ao Ecommerce grupo 2, "+cliente.getNomeUsuario()+"!",
-		// 				   cliente.getEmail()));
+		 emailService.enviar(
+		 new MensagemEmail("Cadastro de "+ cliente.getNomeCompleto(),
+		                   "Bem vindo ao Ecommerce grupo 2, "+cliente.getNomeUsuario()+"!",
+		 				   cliente.getEmail()));
 
 		return new ResponseEntity<>(cliente, HttpStatus.CREATED); // 201
 	}
