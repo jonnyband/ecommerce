@@ -335,7 +335,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request Copy 2",
+					"name": "Get Imagem",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true,
 						"disabledSystemHeaders": {}
@@ -354,10 +354,20 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Content-Type",
+								"key": "Content-Typec",
 								"value": "multipart/form-data; boundary=calculated when request is sent",
 								"type": "default",
 								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "image/jpeg",
+								"type": "default"
+							},
+							{
+								"key": "Accept",
+								"value": "image/png",
+								"type": "default"
 							}
 						],
 						"body": {
@@ -367,13 +377,15 @@
 									"key": "produto",
 									"value": "{\n\"nome\":\"Galaxy\",\n\"descricao\":\"celular\",\n\"quantidadeEstoque\":2,\n\"dataCadastro\":\"2022-10-22\",\n\"valorUnitario\":300.0,\n\"idCategoria\":null\n\n}",
 									"contentType": "application/json",
-									"type": "default"
+									"type": "default",
+									"disabled": true
 								},
 								{
 									"key": "imagem",
 									"contentType": "",
 									"type": "file",
-									"src": "/C:/Users/Jonny/Downloads/Atividade Final - E-commerce.pdf"
+									"src": [],
+									"disabled": true
 								}
 							],
 							"options": {
@@ -383,7 +395,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/api/produtos",
+							"raw": "http://127.0.0.1:8080/api/produtos/imagem/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -394,7 +406,9 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"produtos"
+								"produtos",
+								"imagem",
+								"1"
 							]
 						}
 					},
