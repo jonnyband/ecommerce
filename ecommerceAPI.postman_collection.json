@@ -227,7 +227,7 @@
 							"formdata": [
 								{
 									"key": "produto",
-									"value": "{\n\"nome\":\"Galaxy\",\n\"descricao\":\"celular\",\n\"quantidadeEstoque\":2,\n\"dataCadastro\":\"2022-10-22\",\n\"valorUnitario\":300.0,\n\"idCategoria\":null\n\n}",
+									"value": "{\n\"nome\":\"Capivara adestrada\",\n\"descricao\":\"5 anos de idade\",\n\"quantidadeEstoque\":10,\n\"dataCadastro\":\"\",\n\"valorUnitario\":300.0,\n\"categoria\":{ \"id\":1}\n\n}",
 									"contentType": "application/json",
 									"type": "default"
 								},
@@ -235,7 +235,13 @@
 									"key": "imagem",
 									"contentType": "",
 									"type": "file",
-									"src": "/C:/Users/Jonny/Downloads/Atividade Final - E-commerce.pdf"
+									"src": "/C:/Users/Jonny/Downloads/person-riding-a-giant-capybara-near-a-lake-on-the-sunset-hyper-realistic-null(1).png"
+								},
+								{
+									"key": "",
+									"type": "file",
+									"src": [],
+									"disabled": true
 								}
 							],
 							"options": {
@@ -406,7 +412,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"dataPedido\":\"2023-10-24\",\r\n    \"dataEntrega\":\"2022-11-24\",\r\n    \"dataEnvio\":\"2022-10-25\",\r\n    \"status\":\"PROCESSANDO\",\r\n    \"cliente\":{\"id\":6},\r\n    \"listaItemPedido\":\r\n        [\r\n    {\r\n    \"quantidade\":2,\r\n    \"precoVenda\":1,\r\n    \"percentualDesconto\":15.0,\r\n    \"valorBruto\":100.0,\r\n    \"valorLiquido\":0.0,\r\n    \"pedido\":{\"id\":null\r\n    },\r\n    \"produto\":{\r\n        \"id\":17\r\n        }  \r\n    },\r\n     {\r\n    \"quantidade\":5,\r\n    \"precoVenda\":10,\r\n    \"percentualDesconto\":15.0,\r\n    \"valorBruto\":100.0,\r\n    \"valorLiquido\":0.0,\r\n    \"pedido\":{\r\n        \"id\":null\r\n    },\r\n    \"produto\":{\r\n        \"id\":19\r\n        }  \r\n    }\r\n        ]\r\n    \r\n}",
+							"raw": "{\r\n    \"dataPedido\":\"\",\r\n    \"dataEntrega\":\"2022-11-24\",\r\n    \"dataEnvio\":\"2022-10-25\",\r\n    \"status\":\"PROCESSANDO\",\r\n    \"cliente\":{\"id\":14},\r\n    \"listaItemPedido\":\r\n        [\r\n    {\r\n    \"quantidade\":2,\r\n    \"precoVenda\":1,\r\n    \"percentualDesconto\":15.0,\r\n    \"valorBruto\":100.0,\r\n    \"valorLiquido\":0.0,\r\n    \"pedido\":{\"id\":null\r\n    },\r\n    \"produto\":{\r\n        \"id\":24\r\n        }  \r\n    },\r\n     {\r\n    \"quantidade\":5,\r\n    \"precoVenda\":10,\r\n    \"percentualDesconto\":15.0,\r\n    \"valorBruto\":100.0,\r\n    \"valorLiquido\":0.0,\r\n    \"pedido\":{\r\n        \"id\":null\r\n    },\r\n    \"produto\":{\r\n        \"id\":25\r\n        }  \r\n    }\r\n        ]\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
