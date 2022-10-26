@@ -21,7 +21,7 @@ public class Cliente {
 	@Column(name="id_cliente")
 	private Long id;
 	
-	@Column(name="email",length=30,nullable=false)
+	@Column(name="email",length=50,nullable=false)
 	private String email;
 	
 	@Column(name="nome_usuario",length=20,nullable=false)
