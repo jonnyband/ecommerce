@@ -32,17 +32,9 @@ public class ConversorDeData {
 	}
 
 	public static void validarData(Pedido pedido) {
-
-        Calendar dAtual = Calendar.getInstance();
-        Calendar dPedido = Calendar.getInstance();
-        Date dataAtual = new Date();
-        Date dataPedido = pedido.getDataPedido();
-
-        dAtual.setTime(dataAtual);
-        dPedido.setTime(dataPedido);
-
-        if(!dPedido.after(dAtual)) {
-            throw new ResourceBadRequestException("A data do pedido não pode ser inferior a data atual");
+	
+        if(!new Date().after(pedido.getDataPedido())) {
+            throw new ResourceBadRequestException("Data inválida");
         }
     }
 }

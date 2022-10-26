@@ -1,6 +1,7 @@
 package com.grupo2.ecommerce.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,8 +54,9 @@ public class PedidoService {
 	}
 	
 	public PedidoResponseDTO cadastrar(PedidoRequestDTO pedidoDTO) {
-
+		
 		Pedido pedido = mapper.map(pedidoDTO, Pedido.class);
+		pedido.setDataPedido(new Date());
 		ConversorDeData.validarData(pedido);
 		validarModelo(pedido);
 		pedido = repositorio.save(pedido);

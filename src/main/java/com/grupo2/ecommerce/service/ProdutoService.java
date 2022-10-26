@@ -1,5 +1,6 @@
 package com.grupo2.ecommerce.service;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class ProdutoService {
 	
 	public Produto cadastrar (Produto produto, MultipartFile imagem) throws IOException {
 		validarModelo(produto);
-		
+		produto.setDataCadastro(new Date());
 		produto.setId(null);
 		produto.setImagem(imagem.getBytes());
 		return repositorio.save(produto);
@@ -61,10 +62,7 @@ public class ProdutoService {
 	
 	private void validarModelo(Produto produto) {
 		
-		if(produto.getDataCadastro() == null){
-
-		}
-		else if(produto.getDescricao() == null){
+		if(produto.getDescricao() == null){
 
 		}
 		else if(produto.getQuantidadeEstoque() == 0){
