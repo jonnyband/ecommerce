@@ -28,7 +28,7 @@ public class ClienteController {
 	
 	@Autowired
 	ClienteService service;
-
+	
 	@Autowired
 	private EmailService emailService;
 	
@@ -49,9 +49,24 @@ public class ClienteController {
 	@PostMapping
 	public ResponseEntity<Cliente> cadastrar(@RequestBody Cliente cliente) {
 		cliente = service.cadastrar(cliente);
+		
+		String mensagem =  "<body style=\"max-width: 768px; margin: auto; padding: 0rem 3rem; font-family: Arial, Helvetica, sans-serif\">\r\n"
+				+ "    <h1 style=\"margin-top:4rem; color: black; font-size: 1.85rem;\">Bem vindo, <span style=\"background-color: rgb(255, 228, 139); padding: 4px 4px; border-radius: 6px\">" + cliente.getNomeUsuario() +  "</span>!</h1>\r\n"
+				+ "    <p style=\"font-size: 0.875rem;\">Sua conta foi criada com sucesso. A equipe da <a href=\"#\" style=\"color: blue;\">g2ecommerce.com</a>. buscará fornecer o melhor atendimento.</p>\r\n"
+				+ "    <div style=\"margin-top: 3rem; border: 1px solid rgb(230, 230, 230); border-radius: 6px; padding: 1rem; box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);\">\r\n"
+				+ "        <h2 style=\"font-size: 1.5rem; color: brown;\">Resumo da conta</h2>\r\n"
+				+ "        <p style=\"font-size: 0.875rem;\"><strong>Nome Completo: </strong>" + cliente.getNomeCompleto() + "</p>\r\n"
+						+ "        <p style=\"font-size: 0.875rem;\"><strong>Usuário: </strong>" + cliente.getNomeUsuario() + "</p>\r\n"
+				+ "        <p style=\"font-size: 0.875rem;\"><strong>Email: </strong>" + cliente.getEmail() + "</p>\r\n"
+				+ "        <p style=\"font-size: 0.875rem;\"><strong>Contato: </strong> " + cliente.getTelefone() + "</p>\r\n"
+				+ "        <p style=\"font-size: 0.875rem;\"> <strong>CPF: </strong> "+ cliente.getCpf() +"</p>\r\n"
+				+ "        \r\n"
+				+ "    </div>\r\n"
+				+ "</body>";
+		
 		 emailService.enviar(
-		 new MensagemEmail("Cadastro de "+ cliente.getNomeCompleto(),
-		                   "Bem vindo ao Ecommerce grupo 2, "+cliente.getNomeUsuario()+"!",
+		 new MensagemEmail("Cadastro de cliente concluído",
+		                   mensagem,
 		 				   cliente.getEmail()));
 
 		return new ResponseEntity<>(cliente, HttpStatus.CREATED); // 201
