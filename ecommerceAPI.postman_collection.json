@@ -60,7 +60,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"jmsupernet1@gmail.com\",\r\n    \"nomeUsuario\":\"cliente1\",\r\n    \"nomeCompleto\":\"cliente1\",\r\n    \"cpf\":\"12345608910\",\r\n    \"telefone\":\"24992222222\",\r\n    \"dataNascimento\":\"0001-01-01\",\r\n    \"idEndereco\": null\r\n}",
+							"raw": "{\r\n    \"email\": \"@gmail.com\",\r\n    \"nomeUsuario\":\"cliente1\",\r\n    \"nomeCompleto\":\"cliente1\",\r\n    \"cpf\":\"123432138911\",\r\n    \"telefone\":\"24992222222\",\r\n    \"dataNascimento\":\"0001-01-01\",\r\n    \"endereco\": {\"id\":1}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
