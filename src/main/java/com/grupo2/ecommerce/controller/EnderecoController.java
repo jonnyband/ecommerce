@@ -19,6 +19,7 @@ import com.grupo2.ecommerce.model.Endereco;
 import com.grupo2.ecommerce.service.EnderecoService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/enderecos")
 public class EnderecoController {
 	

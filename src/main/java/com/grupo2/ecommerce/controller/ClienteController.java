@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import com.grupo2.ecommerce.service.EmailService;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/clientes")
 public class ClienteController {
 	
@@ -50,24 +52,24 @@ public class ClienteController {
 	public ResponseEntity<Cliente> cadastrar(@RequestBody Cliente cliente) {
 		cliente = service.cadastrar(cliente);
 		
-		String mensagem =  "<body style=\"max-width: 768px; margin: auto; padding: 0rem 3rem; font-family: Arial, Helvetica, sans-serif\">\r\n"
-				+ "    <h1 style=\"margin-top:4rem; color: black; font-size: 1.85rem;\">Bem vindo, <span style=\"background-color: rgb(255, 228, 139); padding: 4px 4px; border-radius: 6px\">" + cliente.getNomeUsuario() +  "</span>!</h1>\r\n"
-				+ "    <p style=\"font-size: 0.875rem;\">Sua conta foi criada com sucesso. A equipe da <a href=\"#\" style=\"color: blue;\">g2ecommerce.com</a>. buscará fornecer o melhor atendimento.</p>\r\n"
-				+ "    <div style=\"margin-top: 3rem; border: 1px solid rgb(230, 230, 230); border-radius: 6px; padding: 1rem; box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);\">\r\n"
-				+ "        <h2 style=\"font-size: 1.5rem; color: brown;\">Resumo da conta</h2>\r\n"
-				+ "        <p style=\"font-size: 0.875rem;\"><strong>Nome Completo: </strong>" + cliente.getNomeCompleto() + "</p>\r\n"
-						+ "        <p style=\"font-size: 0.875rem;\"><strong>Usuário: </strong>" + cliente.getNomeUsuario() + "</p>\r\n"
-				+ "        <p style=\"font-size: 0.875rem;\"><strong>Email: </strong>" + cliente.getEmail() + "</p>\r\n"
-				+ "        <p style=\"font-size: 0.875rem;\"><strong>Contato: </strong> " + cliente.getTelefone() + "</p>\r\n"
-				+ "        <p style=\"font-size: 0.875rem;\"> <strong>CPF: </strong> "+ cliente.getCpf() +"</p>\r\n"
-				+ "        \r\n"
-				+ "    </div>\r\n"
-				+ "</body>";
+		// String mensagem =  "<body style=\"max-width: 768px; margin: auto; padding: 0rem 3rem; font-family: Arial, Helvetica, sans-serif\">\r\n"
+		// 		+ "    <h1 style=\"margin-top:4rem; color: black; font-size: 1.85rem;\">Bem vindo, <span style=\"background-color: rgb(255, 228, 139); padding: 4px 4px; border-radius: 6px\">" + cliente.getNomeUsuario() +  "</span>!</h1>\r\n"
+		// 		+ "    <p style=\"font-size: 0.875rem;\">Sua conta foi criada com sucesso. A equipe da <a href=\"#\" style=\"color: blue;\">g2ecommerce.com</a>. buscará fornecer o melhor atendimento.</p>\r\n"
+		// 		+ "    <div style=\"margin-top: 3rem; border: 1px solid rgb(230, 230, 230); border-radius: 6px; padding: 1rem; box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);\">\r\n"
+		// 		+ "        <h2 style=\"font-size: 1.5rem; color: brown;\">Resumo da conta</h2>\r\n"
+		// 		+ "        <p style=\"font-size: 0.875rem;\"><strong>Nome Completo: </strong>" + cliente.getNomeCompleto() + "</p>\r\n"
+		// 				+ "        <p style=\"font-size: 0.875rem;\"><strong>Usuário: </strong>" + cliente.getNomeUsuario() + "</p>\r\n"
+		// 		+ "        <p style=\"font-size: 0.875rem;\"><strong>Email: </strong>" + cliente.getEmail() + "</p>\r\n"
+		// 		+ "        <p style=\"font-size: 0.875rem;\"><strong>Contato: </strong> " + cliente.getTelefone() + "</p>\r\n"
+		// 		+ "        <p style=\"font-size: 0.875rem;\"> <strong>CPF: </strong> "+ cliente.getCpf() +"</p>\r\n"
+		// 		+ "        \r\n"
+		// 		+ "    </div>\r\n"
+		// 		+ "</body>";
 		
-		 emailService.enviar(
-		 new MensagemEmail("Cadastro de cliente concluído",
-		                   mensagem,
-		 				   cliente.getEmail()));
+		//  emailService.enviar(
+		//  new MensagemEmail("Cadastro de cliente concluído",
+		//                    mensagem,
+		//  				   cliente.getEmail()));
 
 		return new ResponseEntity<>(cliente, HttpStatus.CREATED); // 201
 	}
