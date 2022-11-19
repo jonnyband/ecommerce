@@ -49,7 +49,7 @@ public class ProdutoService {
 	
 	public Produto atualizar (Long id, Produto produto) {
 		obterPorId(id); // Verificando se existe usuário com o ID informado
-		validarModelo(produto);
+		// validarModelo(produto);
 		
 		produto.setId(id);
 		return repositorio.save(produto);

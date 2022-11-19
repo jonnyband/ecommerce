@@ -57,7 +57,7 @@ public class PedidoService {
 		
 		Pedido pedido = mapper.map(pedidoDTO, Pedido.class);
 		pedido.setDataPedido(new Date());
-		ConversorDeData.validarData(pedido);
+		// ConversorDeData.validarData(pedido);
 		validarModelo(pedido);
 		pedido = repositorio.save(pedido);
 		pedido.setCliente(clienteService.obterPorId(pedido.getCliente().getId()).get());
@@ -85,9 +85,7 @@ public class PedidoService {
 	}
 	
 	private void validarModelo(Pedido pedido) {
-		if(pedido.getDataPedido() == null) {
-			throw new ResourceBadRequestException("A data do pedido deve ser informada.");
-		}else if(pedido.getStatus() == null) {
+		if(pedido.getStatus() == null) {
 			throw new ResourceBadRequestException("O status deve ser informado.");
 		}
 	}

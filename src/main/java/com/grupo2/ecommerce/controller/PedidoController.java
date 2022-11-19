@@ -61,35 +61,35 @@ public class PedidoController {
 		}
 		
 		
-		String mensagem = "<body style=\"max-width: 768px; margin: auto; padding: 0rem 3rem; font-family: Arial, Helvetica, sans-serif\">\r\n"
-				+ "    <h1 style=\"margin-top:4rem; font-size: 1.85rem;\">Olá, <span style=\"background-color: rgb(255, 228, 139); padding: 4px 4px; border-radius: 6px\">" + pedidoResponseDTO.getCliente().getNomeUsuario() +  "</span>!</h1>\r\n"
-				+ "    <p style=\"font-size: 0.875rem;\">Agradecemos por comprar na <a href=\"#\" style=\"color: blue;\">g2ecommerce.com</a>. Seu pedido foi recebido e será processado após a confirmação do pagamento. Caso o pagamento não seja confirmado dentro do período de três dias, seu pedido será automaticamente cancelado.</p>\r\n"
-				+ "    <div style=\"margin-top: 3rem; border: 1px solid rgb(230, 230, 230); border-radius: 6px; padding: 1rem; box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);\">\r\n"
-				+ "        <h2 style=\"font-size: 1.5rem; color: brown;\">Resumo do pedido</h2>\r\n"
-				+ "        <p style=\"font-size: 0.875rem;\"><strong>Comprador: </strong>" + pedidoResponseDTO.getCliente().getNomeCompleto() + "</p>\r\n"
-				+ "        <p style=\"font-size: 0.875rem;\"><strong>Pedido n°: </strong>" + pedidoResponseDTO.getId() + "</p>\r\n"
-				+ "        <p style=\"font-size: 0.875rem;\"><strong>Realizado em: </strong>" + pedidoResponseDTO.getDataPedido() + " - Horário de Brasília.</p>\r\n"
-				+ "        <p style=\"font-size: 0.875rem;\"> <strong style=\"font-size: 1.25rem;\">Total do pedido:</strong> R$ "+ soma +"</p>\r\n"
-				+ "        \r\n"
-				+ "        <div style=\"border-top: 1px solid rgb(223, 220, 220)\">\r\n"
-				+ "            <h3 style=\"font-size: 1.25rem; margin-bottom: 0px; padding: 0px;\">Será enviado para:</h3>\r\n"
-				+ "            <p style=\"font-size: 0.875rem;\">"
-								+ pedidoResponseDTO.getCliente().getEndereco().getCep() + ", "
-								+ pedidoResponseDTO.getCliente().getEndereco().getCidade() + " - "
-								+ pedidoResponseDTO.getCliente().getEndereco().getUf() +". "
-								+ pedidoResponseDTO.getCliente().getEndereco().getBairro() +", "
-								+ pedidoResponseDTO.getCliente().getEndereco().getNumero() +". "
-								+ pedidoResponseDTO.getCliente().getEndereco().getComplemento() +".</p>\r\n"
-				+ "        </div>\r\n"
-				+ "\r\n"
-				+ "    </div>\r\n"
-				+ "</body>";
+		// String mensagem = "<body style=\"max-width: 768px; margin: auto; padding: 0rem 3rem; font-family: Arial, Helvetica, sans-serif\">\r\n"
+		// 		+ "    <h1 style=\"margin-top:4rem; font-size: 1.85rem;\">Olá, <span style=\"background-color: rgb(255, 228, 139); padding: 4px 4px; border-radius: 6px\">" + pedidoResponseDTO.getCliente().getNomeUsuario() +  "</span>!</h1>\r\n"
+		// 		+ "    <p style=\"font-size: 0.875rem;\">Agradecemos por comprar na <a href=\"#\" style=\"color: blue;\">g2ecommerce.com</a>. Seu pedido foi recebido e será processado após a confirmação do pagamento. Caso o pagamento não seja confirmado dentro do período de três dias, seu pedido será automaticamente cancelado.</p>\r\n"
+		// 		+ "    <div style=\"margin-top: 3rem; border: 1px solid rgb(230, 230, 230); border-radius: 6px; padding: 1rem; box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);\">\r\n"
+		// 		+ "        <h2 style=\"font-size: 1.5rem; color: brown;\">Resumo do pedido</h2>\r\n"
+		// 		+ "        <p style=\"font-size: 0.875rem;\"><strong>Comprador: </strong>" + pedidoResponseDTO.getCliente().getNomeCompleto() + "</p>\r\n"
+		// 		+ "        <p style=\"font-size: 0.875rem;\"><strong>Pedido n°: </strong>" + pedidoResponseDTO.getId() + "</p>\r\n"
+		// 		+ "        <p style=\"font-size: 0.875rem;\"><strong>Realizado em: </strong>" + pedidoResponseDTO.getDataPedido() + " - Horário de Brasília.</p>\r\n"
+		// 		+ "        <p style=\"font-size: 0.875rem;\"> <strong style=\"font-size: 1.25rem;\">Total do pedido:</strong> R$ "+ soma +"</p>\r\n"
+		// 		+ "        \r\n"
+		// 		+ "        <div style=\"border-top: 1px solid rgb(223, 220, 220)\">\r\n"
+		// 		+ "            <h3 style=\"font-size: 1.25rem; margin-bottom: 0px; padding: 0px;\">Será enviado para:</h3>\r\n"
+		// 		+ "            <p style=\"font-size: 0.875rem;\">"
+		// 						+ pedidoResponseDTO.getCliente().getEndereco().getCep() + ", "
+		// 						+ pedidoResponseDTO.getCliente().getEndereco().getCidade() + " - "
+		// 						+ pedidoResponseDTO.getCliente().getEndereco().getUf() +". "
+		// 						+ pedidoResponseDTO.getCliente().getEndereco().getBairro() +", "
+		// 						+ pedidoResponseDTO.getCliente().getEndereco().getNumero() +". "
+		// 						+ pedidoResponseDTO.getCliente().getEndereco().getComplemento() +".</p>\r\n"
+		// 		+ "        </div>\r\n"
+		// 		+ "\r\n"
+		// 		+ "    </div>\r\n"
+		// 		+ "</body>";
 		
-		emailService.enviar(
-				new MensagemEmail("Confirmação do pedido n°" +  pedidoResponseDTO.getId(),
-										mensagem,
-										pedidoResponseDTO.getCliente().getEmail())
-				);
+		// emailService.enviar(
+		// 		new MensagemEmail("Confirmação do pedido n°" +  pedidoResponseDTO.getId(),
+		// 								mensagem,
+		// 								pedidoResponseDTO.getCliente().getEmail())
+		// 		);
 		
 		return new ResponseEntity<>(pedidoResponseDTO, HttpStatus.CREATED);
 	}
